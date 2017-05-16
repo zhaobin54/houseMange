@@ -98,10 +98,10 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 	}
 
 	@Override
-	public int countAll() {
-		String hql = "select count(1) from " + persistentClass;
+	public Long countAll() {
+		String hql = "select count(*) from " + persistentClass.getSimpleName();
 		Query query = getSession().createQuery(hql);
-		return (int) query.uniqueResult();
+		return (long) query.uniqueResult();
 	}
 
 	@Override

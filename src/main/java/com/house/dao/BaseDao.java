@@ -10,7 +10,7 @@ public interface BaseDao<T> {
 
 	T saveOrUpdate(T entity);
 
-	int countAll();
+	Long countAll();
 
 	T get(Serializable id);
 

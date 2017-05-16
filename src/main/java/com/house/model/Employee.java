@@ -17,7 +17,7 @@ public class Employee {
 	@Id
 	@GeneratedValue(generator = "uuid")
 	@GenericGenerator(name = "uuid", strategy = "uuid")
-	private String id;
+	private String uuid;
 
 	@Column(name = "name")
 	private String name;
@@ -32,12 +32,14 @@ public class Employee {
 	@Column(name = "district")
 	private String district;
 
-	public String getId() {
-		return id;
+	
+
+	public String getUuid() {
+		return uuid;
 	}
 
-	public void setId(String id) {
-		this.id = id;
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
 	}
 
 	public String getName() {

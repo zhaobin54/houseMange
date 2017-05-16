@@ -21,6 +21,6 @@ public class EmployeeServiceImpl implements EmployeeService{
 	}
 	@Override
 	public int countAll(){
-		return employeeDao.countAll();
+		return employeeDao.countAll().intValue();
 	}
 }
