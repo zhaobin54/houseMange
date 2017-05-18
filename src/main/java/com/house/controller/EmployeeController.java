@@ -1,5 +1,6 @@
 package com.house.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,6 +8,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -23,6 +25,7 @@ import com.house.util.StringHelp;
 public class EmployeeController extends MultiActionController {
 
 	@Autowired
+	@Qualifier("employeeService")
 	public EmployeeService employeeService;
 
 	@RequestMapping(value = "/load.htmls")
@@ -43,7 +46,25 @@ public class EmployeeController extends MultiActionController {
 		pager.setPage(page);
 		pager.setPageLines(pagecount == null ? 10 : Integer.parseInt(pagecount));
 		List<Employee> employeeList = employeeService.findByPage(em, pager);
-		map.put("rows", employeeList);
+		map.put("rows", employeeList==null?new ArrayList<>():employeeList);
 		return map;
 	}
+	
+	@RequestMapping(value = "/addEm.htmls")
+	@ResponseBody
+	public Map<String, Object> addEm(Employee em, HttpServletRequest request) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("success", employeeService.saveOrUpdate(em));
+		return map;
+	}
+	
+	@RequestMapping(value = "/delEm.htmls")
+	@ResponseBody
+	public Map<String, Object> delEm(String uuid, HttpServletRequest request) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("success", employeeService.delete(uuid));
+		return map;
+	}
+	
+	
 }

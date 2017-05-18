@@ -1,4 +1,4 @@
-package com.house.dao;
+package com.house.service;
 
 import java.io.Serializable;
 import java.util.Collection;
@@ -7,15 +7,14 @@ import java.util.Map;
 
 import com.house.util.Pager;
 
-public interface BaseDao<T> {
+public interface BaseService<T> {
+	boolean saveOrUpdate(T entity);
 
-	T saveOrUpdate(T entity);
-
-	Long countAll();
+	int countAll();
 
 	T get(Serializable id);
 
-	void delete(T entity);
+	boolean delete(Serializable id);
 
 	int deleteAll(Collection<Serializable> ids);
 
@@ -28,5 +27,4 @@ public interface BaseDao<T> {
 	List<T> findByPager(String propertyName, String value, Pager pager);
 
 	List<T> findByMapPager(Map<String, Object> map, Pager pager);
-
 }

@@ -13,7 +13,7 @@ import com.house.model.Employee;
 import com.house.util.Pager;
 import com.house.util.StringHelp;
 
-@Repository
+@Repository("employeeDao")
 @SuppressWarnings("unchecked")
 public class EmployeeDaoImpl extends BaseDaoImpl<Employee> implements EmployeeDao{
 

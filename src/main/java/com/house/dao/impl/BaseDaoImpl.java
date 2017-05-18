@@ -1,8 +1,10 @@
 package com.house.dao.impl;
 
 import java.io.Serializable;
+import java.lang.reflect.ParameterizedType;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import org.hibernate.Criteria;
 import org.hibernate.Query;
@@ -18,13 +20,11 @@ import org.springframework.stereotype.Repository;
 import org.springframework.util.Assert;
 
 import com.house.dao.BaseDao;
-import com.house.dao.EmployeeDao;
-import com.house.model.Employee;
 import com.house.util.Pager;
 import com.house.util.ReflectionHelper;
 import com.house.util.StringHelp;
 
-@Repository
+@Repository("baseDao")
 @SuppressWarnings("unchecked")
 public class BaseDaoImpl<T> implements BaseDao<T> {
 
@@ -33,6 +33,8 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 	protected SessionFactory sessionFactory;
 
 	public BaseDaoImpl() {
+		// ParameterizedType type = (ParameterizedType) this.getClass().getGenericSuperclass();
+		 //persistentClass = (Class<T>) type.getActualTypeArguments()[0];
 		this.persistentClass = ReflectionHelper.getSuperClassGenricType(getClass());
 	}
 
@@ -81,7 +83,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 	}
 	@Override
 	public int deleteAll(Collection<Serializable> ids) {
-		String sql = "delete from " + this.persistentClass;
+		String sql = "delete from " + this.persistentClass.getSimpleName();
 		String idStr = "";
 		for (Serializable id : ids) {
 			if (id instanceof String) {
@@ -120,7 +122,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 
 	@Override
 	public List<T> findAll() {
-		String hql = "select *from " + this.persistentClass;
+		String hql = "select *from " + this.persistentClass.getSimpleName();
 		Query query = getSession().createQuery(hql);
 		return query.list();
 	}
@@ -157,6 +159,23 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 		return null;
 	}
 
+	@Override
+	public List<T> findByMapPager(Map<String, Object> map, Pager pager) {
+		Criteria c = getSession().createCriteria(persistentClass);
+		for(Map.Entry<String, Object> item:map.entrySet()){
+			c.add(Restrictions.eq(item.getKey(), item.getValue()));
+		}
+		if (pager.getOverleapLines() != null) {
+			c.setFirstResult(pager.getOverleapLines());
+		}
+		if (pager.getPageLines() != null) {
+			c.setMaxResults(pager.getPageLines());
+		}
+		if (c.list().size() > 0) {
+			return c.list();
+		}
+		return null;
+	}
 	public Object createQuery(String sql) {
 		Query query = getSession().createQuery(sql);
 		return query.uniqueResult();
