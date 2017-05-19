@@ -14,7 +14,14 @@
 	<script type="text/javascript" src="${ctx}/WEB-RES/jquery/js/format.js"></script>
 	<script type="text/javascript" src="${ctx}/WEB-RES/jquery/js/message.js"></script>
 	<script type="text/javascript" src="${ctx}/WEB-RES/jquery/js/common.js"></script>
+	<style type="text/css">
+	 .del{
+	   height: 20px;
+	   color: blue;
+	 }
+	</style>
 </head>
+
 <script type="text/javascript">
 var baseUrl="${ctx}";
 
@@ -29,11 +36,11 @@ $(function(){
 	        }},
 	        {field:'province',title:'所属省份',width:"15%",align:'center'},
 	        {field:'city',title:'所属城市',width:"15%",align:'center'},
-	        {field:'district',title:'所属区域',width:"10%",align:'center'},
-	        {field:'listprice',title:'操作',width:"15%",align:'center',
+	        {field:'district',title:'所属区域',width:"15%",align:'center'},
+	        {field:'listprice',title:'操作',width:"10%",align:'center',
 	        	formatter:function(value,row,index){
 	        		var url=baseUrl+"/employee/delEm.htmls";
-	        		return "<a href=\"javascript:del('dg',"+index+",'"+url+"')\" class=\"del\">删除</a>";	
+	        		return "<a href=\"javascript:del('dd',"+index+",'"+url+"')\" class=\"del\">删除</a>";	
 			  }
 	       }  
 	    ]],
@@ -45,7 +52,7 @@ $(function(){
 		pageSize:10,
 		pageList:[10,20,30,40,50],
 		onLoadSuccess:function(data){  
-			$('.del').linkbutton({text:"删除",plain:'true',iconCls:'icon-cancel'});
+			$('.del').linkbutton({text:"删除",plain:'true'});
         },
 		onDblClickCell: function(index,field,value){
 			var data = $('#dgdd').datagrid('getData').rows[index];

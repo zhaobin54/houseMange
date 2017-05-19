@@ -32,6 +32,10 @@ public class Employee {
 	@Column(name = "district")
 	private String district;
 
+	@Column(name = "account")
+	private String account;
+	@Column(name = "password")
+	private String password;
 	
 
 	public String getUuid() {
@@ -88,6 +92,22 @@ public class Employee {
 
 	public void setDistrict(String district) {
 		this.district = district;
+	}
+
+	public String getAccount() {
+		return account;
+	}
+
+	public void setAccount(String account) {
+		this.account = account;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 }

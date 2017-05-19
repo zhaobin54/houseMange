@@ -1,7 +1,7 @@
 function del(id,index,url) { 
 	$.messager.confirm('确认', '确认删除?', function(row) {
 		if (row) {
-			var data = $('#'+id).datagrid('getData').rows[index];
+			var data = $('#dg'+id).datagrid('getData').rows[index];
 			$.ajax({
 				url : url,
 				dataType : "json",
@@ -11,7 +11,7 @@ function del(id,index,url) {
 				success : function(data) {
 					if(data.success==true){
 						msgShow('提示',"删除成功");
-						$('#'+id).datagrid('reload');
+						$('#dg'+id).datagrid('reload');
 					}else{
 						msgShow('提示',"删除失败");
 					}
