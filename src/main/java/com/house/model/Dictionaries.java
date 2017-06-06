@@ -7,7 +7,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-
+/**
+ * ×Öµä
+ * @author ZHAO130
+ *
+ */
 @Entity
 @Table(name = "dictionaries")
 public class Dictionaries {

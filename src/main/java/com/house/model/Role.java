@@ -24,7 +24,7 @@ public class Role {
 	private String employeeId;
 	
 	@Column(name="function")
-	private String function;
+	private String functionId;
 
 	public String getUuid() {
 		return uuid;
@@ -50,16 +50,11 @@ public class Role {
 		this.employeeId = employeeId;
 	}
 
-	public String getFunction() {
-		return function;
+	public String getFunctionId() {
+		return functionId;
 	}
 
-	public void setFunction(String function) {
-		this.function = function;
+	public void setFunctionId(String functionId) {
+		this.functionId = functionId;
 	}
-	
-	
-	
-	
-	
 }

@@ -9,7 +9,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-
+/**
+ * Ô±¹¤
+ * @author ZHAO130
+ *
+ */
 @Entity
 @Table(name = "employee")
 public class Employee {

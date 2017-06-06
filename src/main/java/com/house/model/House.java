@@ -9,7 +9,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-
+/**
+ * 房屋
+ * @author ZHAO130
+ *
+ */
 @Entity
 @Table(name = "house")
 public class House {
@@ -45,6 +49,8 @@ public class House {
 	private String decoration;// 精装修，中等装修，简单装修
 	@Column(name = "rentType")
 	private int rentType;// 0-整租 1-合租
+	@Column(name = "isPartition")
+	private int isPartition;//0-非隔断 1-隔断
 	@Column(name = "signEmployee")
 	private String signEmployee;// 签约人
 	@Column(name = "signAmount")

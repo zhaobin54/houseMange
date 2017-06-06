@@ -7,7 +7,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
-
+/**
+ * ·¿ÎÝ³ö×â
+ * @author ZHAO130
+ *
+ */
 @Entity
 @Table(name = "renthouse")
 public class RentHouse {
